@@ -86,3 +86,39 @@ app.get('/update-cobj', (req, res) => {
     prop4: PROPERTY_4
   });
 });
+
+// ─────────────────────────────────────────────
+// Route 3:
+// Receives form data and creates a new record
+// ─────────────────────────────────────────────
+app.post('/update-cobj', async (req, res) => {
+  const formData = req.body;
+
+  try {
+    await axios.post(
+      `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}`,
+      {
+        properties: {
+          [PROPERTY_1]: formData[PROPERTY_1],
+          [PROPERTY_2]: formData[PROPERTY_2],
+          [PROPERTY_3]: formData[PROPERTY_3],
+          [PROPERTY_4]: formData[PROPERTY_4]
+        }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${HUBSPOT_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    // homepage redirect
+    res.redirect('/');
+
+  } catch (error) {
+    console.error('Error creating record:', error.response?.data || error.message);
+    res.status(500).send('Error creating record. Check your terminal for details.');
+  }
+});
+
