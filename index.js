@@ -61,7 +61,7 @@ app.get('/', async (req, res) => {
       prop1: PROPERTY_1,
       prop2: PROPERTY_2,
       prop3: PROPERTY_3,
-      prop4: PROPERTY_4,
+      prop4: PROPERTY_4
     });
 
   } catch (error) {
@@ -70,3 +70,19 @@ app.get('/', async (req, res) => {
   }
 });
 
+// ─────────────────────────────────────────────
+// Route 2:
+// Record creation page
+app.get('/update-cobj', (req, res) => {
+  res.render('updates', {
+    title: 'Update Custom Object Form | Integrating With HubSpot I Practicum',
+    col1: COL_1_LABEL,
+    col2: COL_2_LABEL,
+    col3: COL_3_LABEL,
+    col4: COL_4_LABEL,
+    prop1: PROPERTY_1,
+    prop2: PROPERTY_2,
+    prop3: PROPERTY_3,
+    prop4: PROPERTY_4
+  });
+});
