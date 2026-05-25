@@ -30,4 +30,43 @@ const COL_2_LABEL = 'Color';
 const COL_3_LABEL = 'Type';
 const COL_4_LABEL = 'Sound';
 
+// Route 1: Homepage — GET /
+// Displays table
+// ─────────────────────────────────────────────
+app.get('/', async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}`,
+      {
+        params: {
+          properties: `${PROPERTY_1},${PROPERTY_2},${PROPERTY_3}`,
+          limit: 100
+        },
+        headers: {
+          Authorization: `Bearer ${HUBSPOT_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const records = response.data.results;
+
+    res.render('homepage', {
+      title: 'Custom Object List | Integrating With HubSpot I Practicum',
+      records,
+      col1: COL_1_LABEL,
+      col2: COL_2_LABEL,
+      col3: COL_3_LABEL,
+      col4: COL_4_LABEL,
+      prop1: PROPERTY_1,
+      prop2: PROPERTY_2,
+      prop3: PROPERTY_3,
+      prop4: PROPERTY_4,
+    });
+
+  } catch (error) {
+    console.error('Error fetching records:', error.response?.data || error.message);
+    res.status(500).send('Error fetching records. Check your terminal for details.');
+  }
+});
 
