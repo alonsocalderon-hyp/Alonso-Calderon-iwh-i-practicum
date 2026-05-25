@@ -122,3 +122,7 @@ app.post('/update-cobj', async (req, res) => {
   }
 });
 
+// server start
+app.listen(3000, () => {
+  console.log('Server running at http://localhost:3000 — open this in your browser');
+});
