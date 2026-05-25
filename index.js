@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
       `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}`,
       {
         params: {
-          properties: `${PROPERTY_1},${PROPERTY_2},${PROPERTY_3}`,
+          properties: `${PROPERTY_1},${PROPERTY_2},${PROPERTY_3},${PROPERTY_4}`,
           limit: 100
         },
         headers: {
