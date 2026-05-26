@@ -22,7 +22,10 @@ html
         input(type='text', id=prop3, name=prop3, required)
 
       div
-        label(for=prop3)= col4 
-        input(type='text', id=prop4, name=prop4, required)
+        label(for=prop4)= col4
+        select(id=prop4, name=prop4, required)
+            option(value='') -- Select --
+            option(value='Meow') Option1
+            option(value='Bark') Option2
 
       button(type='submit') Add Record
